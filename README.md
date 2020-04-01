@@ -1,6 +1,6 @@
 ![There was an attempt](https://user-images.githubusercontent.com/2643026/78128526-ff02ec80-740d-11ea-9226-40b15c437518.png)
 
-# There was an attempt
+# There was an attempt [![Gem Version](https://badge.fury.io/rb/there_was_an_attempt.svg)](https://badge.fury.io/rb/there_was_an_attempt) ![RSpec](https://github.com/samuelgiles/there_was_an_attempt/workflows/RSpec/badge.svg)
 
 A small utility designed to be used alongside [Dry::Monads::Result](https://dry-rb.org/gems/dry-monads/) to repeatedly attempt an operation sleeping between failed attempts.
 
