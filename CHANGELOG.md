@@ -1,4 +1,4 @@
-Unreleased
+2.0.0
 
   * Added ability to specify a conditional retry, useful for only reattempting when its safe to do so.
     * By default retries will always be attempted.
