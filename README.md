@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-Without any arguments given to the constructor a basic exponential backoff interval (2, 4, 8, 16 to be precise) is used with `sleep` being used to wait, as a nicety this is available as `.attempt`:
+Without any arguments given to the constructor a basic backoff interval (2, 4, 8, 16 to be precise) is used with `sleep` being used to wait, as a nicety this is available as `.attempt`:
 
 ```ruby
 # Shortcut for: ThereWasAnAttempt.new.attempt
