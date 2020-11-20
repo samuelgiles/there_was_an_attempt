@@ -34,16 +34,31 @@ end
 You can specify your backoff intervals manually:
 
 ```ruby
-ThereWasAnAttempt.new([1,2,4,8]).attempt do
+ThereWasAnAttempt.new(intervals: [1,2,4,8]).attempt do
     Dry::Monads::Success(true)
 end
 ```
 
-And you can also optionally specify your own "wait" logic:
+You can optionally specify your own "wait" logic. This might be useful for logging & tracking your retries:
 
 ```ruby
-ThereWasAnAttempt.new([1,2,4,8], ->(seconds) { puts seconds; sleep seconds }).attempt do
+ThereWasAnAttempt.new(
+    intervals: [1,2,4,8],
+    wait: ->(seconds) { puts seconds; sleep seconds }
+).attempt do
     Dry::Monads::Success(true)
+end
+```
+
+And more importantly you can optionally specify your own "reattempt" condition so as to only retry when the condition is true. This is really useful for dealing with network requests when you might only want to retry for specific network errors and works great when combined with [`Dry::Monads::Try`](https://dry-rb.org/gems/dry-monads/master/try/).
+
+```ruby
+ThereWasAnAttempt.new(
+    reattempt: -> (failure) { failure.is_a?(Net::HTTPRetriableError) }
+).attempt do
+    Dry::Monads::Try(Net::HTTPExceptions) do
+        Dry::Monads::Success(true)
+    end.to_result
 end
 ```
 
